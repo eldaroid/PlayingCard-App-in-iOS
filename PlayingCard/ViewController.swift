@@ -13,13 +13,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var count = 0
-        for _ in 1...36 {
-            count += 1
-             if let card = deck.draw() {
-                 print("\(count) = \(card)")
-             }
+//        var count = 0
+//        for _ in 1...36 {
+//            count += 1
+//             if let card = deck.draw() {
+//                 print("\(count) = \(card)")
+//             }
         // Do any additional setup after loading the view.
-        }
+//        }
     }
 }
