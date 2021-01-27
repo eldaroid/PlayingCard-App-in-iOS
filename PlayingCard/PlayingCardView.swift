@@ -7,12 +7,16 @@
 
 import UIKit
 
+@IBDesignable
 class PlayingCardView: UIView {
     
     // If we want to update the view, we must call setNeedsDisplay ()
     // Layout is not about drawing. Layout is about positioning/sizing subviews.
-    var rank: Int = 5 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    @IBInspectable
+    var rank: Int = 11 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    @IBInspectable
     var suit: String = "❤️" { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    @IBInspectable
     var isFaceUp: Bool = true { didSet { setNeedsDisplay(); setNeedsLayout() } }
     
     private func centeredAttributedString(_ string: String, fontSize: CGFloat) -> NSAttributedString {
@@ -116,12 +120,18 @@ class PlayingCardView: UIView {
         roundedRect.addClip()
         UIColor.white.setFill()
         roundedRect.fill()
-        
-            if let faceCardImage = UIImage(named: rankString+suit) {
+        if isFaceUp {
+            if let faceCardImage = UIImage(named: rankString+suit, in: Bundle(for: self.classForCoder), compatibleWith: traitCollection) {
                 faceCardImage.draw(in: bounds.insetBy(dx: 95.0, dy: 75.0))
             } else {
                 drawPips()
+
             }
+        } else {
+            if let cardBackImage = UIImage(named: "cardback", in: Bundle(for: self.classForCoder), compatibleWith: traitCollection) {
+                cardBackImage.draw(in: bounds)
+            }
+        }
     }
 }
 
