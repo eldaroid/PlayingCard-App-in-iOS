@@ -122,7 +122,7 @@ class PlayingCardView: UIView {
         roundedRect.fill()
         if isFaceUp {
             if let faceCardImage = UIImage(named: rankString+suit, in: Bundle(for: self.classForCoder), compatibleWith: traitCollection) {
-                faceCardImage.draw(in: bounds.insetBy(dx: 95.0, dy: 75.0))
+                faceCardImage.draw(in: bounds.zoom(by: SizeRatio.faceCardImageSizeToBoundsSize))
             } else {
                 drawPips()
 
