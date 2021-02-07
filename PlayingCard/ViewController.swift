@@ -16,10 +16,11 @@ class ViewController: UIViewController {
             let swipe = UISwipeGestureRecognizer(target: self, action: #selector(nextCard))
             swipe.direction = [.left, .right]
             playingCardView.addGestureRecognizer(swipe)
+            let pinch = UIPinchGestureRecognizer(target: playingCardView, action: #selector(playingCardView.adjustFaceCardScale(byHandlingGestureRecognizedBy:)))
+            playingCardView.addGestureRecognizer(pinch)
         }
     }
-    
-    
+
     @IBAction func flipCard(_ sender: UITapGestureRecognizer) {
         switch sender.state {
         case .ended:
